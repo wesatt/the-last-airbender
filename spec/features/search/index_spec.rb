@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Search results index' do
+RSpec.describe 'Search results index', type: :feature do
   describe 'midmod user story' do
     # As a user,
     # When I visit "/"
@@ -26,7 +26,7 @@ RSpec.describe 'Search results index' do
       click_button 'Search For Members'
 
       expect(current_path).to eq('/search')
-      expect(page).to have_content('citizen #', count: 100)
+      expect(page).to have_content('Character #', count: 100)
       expect(page).to have_content('')
     end
   end
