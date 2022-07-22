@@ -15,9 +15,11 @@ RSpec.describe AtlabService do
     it 'returns a parsed json of all the characters associated with that nation' do
       json = AtlabService.character_lookup_by_nation('Fire Nation')
 
-      expect(json).to be_a(Hash)
-      # or maybe
       expect(json).to be_a(Array)
+      expect(json.first).to be_a(Hash)
+      json.each do |hash|
+        expect(hash.keys).to include(:_id, :allies, :enemies, :name, :affiliation)
+      end
     end
   end
 end
