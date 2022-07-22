@@ -11,9 +11,32 @@
 
   <h1>Search Results for <%= params[:nation].humanize.titleize %>:</h1>
 
-  <%  %>
-  <%  %>
-  <%  %>
-  <%  %>
-  <%  %>
-  <%  %>
+  <% @characters.each_with_index do |character, index|  %>
+    <div id="character-<%= index +1 %>">
+      <% if index <= 24 %>
+        <p><%= "Character ##{index + 1}: #{character.name}" %></p>
+          <% if character.image_path %>
+            <div id="image">
+              <p> <%= image_tag character.image_path  %>
+            </div>
+          <% end %>
+        <p>Allies:
+          <% if character.allies.empty? %>
+            None
+          <% else %>
+            <%= character.allies.join(', ') %>
+          <% end %>
+        </p>
+        <p>Enemies:
+          <% if character.enemies.empty? %>
+            None
+          <% else %>
+            <%= character.enemies.join(', ') %>
+          <% end %>
+        </p>
+        <p>Affiliation: <%= character.affiliation  %></p>
+      <% else %>
+        <p><%= "Character ##{index + 1}: #{character.name}" %></p>
+      <% end %>
+    </div>
+  <% end %>

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AtlabService
   def self.conn
     Faraday.new('https://last-airbender-api.herokuapp.com/')

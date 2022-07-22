@@ -26,8 +26,24 @@ RSpec.describe 'Search results index', type: :feature do
       click_button 'Search For Members'
 
       expect(current_path).to eq('/search')
-      expect(page).to have_content('Character #', count: 100)
-      expect(page).to have_content('')
+      expect(page).to have_content('Character #', count: 97)
+      expect(page).to have_content('None')
+
+      within '#character-25' do
+        expect(page).to have_content('Character #25:')
+        expect(page).to have_selector(:id, 'image')
+        expect(page).to have_content('Allies:')
+        expect(page).to have_content('Enemies:')
+        expect(page).to have_content('Affiliation:')
+      end
+
+      within '#character-26' do
+        expect(page).to have_content('Character #26:')
+        expect(page).to_not have_selector(:id, 'image')
+        expect(page).to_not have_content('Allies:')
+        expect(page).to_not have_content('Enemies:')
+        expect(page).to_not have_content('Affiliation:')
+      end
     end
   end
 end
